@@ -6,26 +6,16 @@
 package view;
 
 import dao.DaoCliente;
-import dao.DaoFornecedor;
-import dao.DaoFuncionario;
 import dao.DaoProduto;
 import model.Cliente;
-import model.Fornecedor;
 import model.Produto;
-import model.Utilitarios;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import model.Funcionario;
 
 /**
  *
@@ -549,8 +539,9 @@ public class FrmVenda extends javax.swing.JFrame {
                             .addComponent(jPanel_totalvenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnpagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -602,6 +593,8 @@ public class FrmVenda extends javax.swing.JFrame {
        FrmPagamento telap = new FrmPagamento();
        telap.txttotal.setText(String.valueOf(total));
        
+       
+       
        telap.cliente = obj;
        telap.carrinho = carrinho;
        
@@ -649,7 +642,9 @@ public class FrmVenda extends javax.swing.JFrame {
         
         total += subtotal;
         txttotal.setText(String.valueOf(total));
-        
+
+        //txttotal.setText(String.valueOf(( new DecimalFormat("#,##0.00").format(total))));
+       
         //Adicionar o produto no carrinho        
         carrinho = (DefaultTableModel) tabelaItens.getModel();
         
@@ -658,19 +653,34 @@ public class FrmVenda extends javax.swing.JFrame {
              txtdescricao.getText(),
              txtqtd.getText(),
              txtpreco.getText(),
-             subtotal           
+             subtotal
+             /*(new DecimalFormat("#,##0.00").format(subtotal))     */      
             });
       
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btnbuscaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaclienteActionPerformed
+         // botao buscar cliente por nome     
 
-        Cliente obj = new Cliente();
+        String cpf = txtcpf.getText().replace(".","").replace("-","");
+        
         DaoCliente dao = new DaoCliente();
 
-        obj = dao.buscaporcpf(txtcpf.getText());
+        obj = dao.buscaporcpf(cpf);
 
-        txtnome.setText(obj.getNome());
+        if (obj.getCpf() != null) {
+
+            //Exibi os dados do obj nos campos de texto
+            
+            txtnome.setText(obj.getNome());
+            
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+        }
+
+        
+  
     }//GEN-LAST:event_btnbuscaclienteActionPerformed
 
     private void btnbuscaprodutonomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaprodutonomeActionPerformed

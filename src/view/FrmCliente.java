@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import dao.DaoCPF;
@@ -15,10 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Utilitarios;
 
-/**
- *
- * @author Tampelini
- */
 public class FrmCliente extends javax.swing.JFrame {
 
     //Metodo Listar na tabela
@@ -445,7 +437,7 @@ public class FrmCliente extends javax.swing.JFrame {
                     .addGroup(painel_dadosLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(jLabel5)))
-                .addContainerGap(135, Short.MAX_VALUE))
+
         );
 
         painel_dadosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtemail, txtnome});
@@ -481,6 +473,7 @@ public class FrmCliente extends javax.swing.JFrame {
         });
 
         btnpesquisar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnpesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/buscar.png"))); // NOI18N
         btnpesquisar.setText("Pesquisar");
         btnpesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

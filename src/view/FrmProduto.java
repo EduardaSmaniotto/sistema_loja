@@ -5,11 +5,11 @@
  */
 package view;
 
-import dao.DaoCliente;
+
 import dao.DaoFornecedor;
 import dao.DaoProduto;
 import dao.DaoCategoria;
-import model.Cliente;
+
 import model.Fornecedor;
 import model.Produto;
 import model.Utilitarios;
@@ -48,7 +48,8 @@ public class FrmProduto extends javax.swing.JFrame {
                 c.getDescricao(),
                 c.getPreco(),
                 c.getQtd_estoque(),
-                c.getFornecedor().getNome()
+                c.getFornecedor().getNome(),
+                c.getCategoria().getDescricao()
 
             });
 
@@ -257,20 +258,22 @@ public class FrmProduto extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtqtdestoque, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                                .addComponent(txtqtdestoque, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                             .addComponent(txtdescricao))
                         .addGap(47, 47, 47)
                         .addComponent(btnbusca)))
                 .addGap(490, 490, 490))
             .addGroup(painel_dadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(painel_dadosLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painel_dadosLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painel_dadosLayout.setVerticalGroup(
@@ -303,7 +306,7 @@ public class FrmProduto extends javax.swing.JFrame {
                 .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         painel_dadosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtdescricao, txtpreco});
@@ -318,7 +321,7 @@ public class FrmProduto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Descrição", "Preço", "Qtd. Estoque", "Fornecedor"
+                "Código", "Descrição", "Preço", "Qtd. Estoque", "Fornecedor", "Categoria"
             }
         ));
         tabelaProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -339,6 +342,7 @@ public class FrmProduto extends javax.swing.JFrame {
         });
 
         btnpesquisar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnpesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/buscar.png"))); // NOI18N
         btnpesquisar.setText("Pesquisar");
         btnpesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,7 +362,7 @@ public class FrmProduto extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnpesquisar)
                 .addContainerGap(588, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,7 +383,8 @@ public class FrmProduto extends javax.swing.JFrame {
         jTabbedPane1.addTab("Consulta de Produtos", jPanel4);
 
         btnnovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnnovo.setText("+ Novo");
+        btnnovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/novo.png"))); // NOI18N
+        btnnovo.setText(" Novo");
         btnnovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnnovoActionPerformed(evt);
@@ -387,6 +392,7 @@ public class FrmProduto extends javax.swing.JFrame {
         });
 
         btnsalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/salvar.png"))); // NOI18N
         btnsalvar.setText("Salvar");
         btnsalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,6 +401,7 @@ public class FrmProduto extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
         jButton3.setText("Editar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,6 +410,7 @@ public class FrmProduto extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
         jButton4.setText("Excluir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -442,7 +450,7 @@ public class FrmProduto extends javax.swing.JFrame {
                     .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -468,15 +476,20 @@ public class FrmProduto extends javax.swing.JFrame {
             txtdescricao.setText(obj.getDescricao());
             txtpreco.setText(String.valueOf(obj.getPreco()));
             txtqtdestoque.setText(String.valueOf(obj.getQtd_estoque()));
+            
          
             Fornecedor f = new Fornecedor();
             DaoFornecedor fdao = new DaoFornecedor();
             
-
             f = fdao.consultaPorNome(obj.getFornecedor().getNome());
            
-
             cbfornecedor.getModel().setSelectedItem(f);
+            
+            Categoria c = new Categoria();
+            DaoCategoria cdao = new DaoCategoria();
+            c = cdao.consultaPorNome(obj.getCategoria().getDescricao());
+            cbcategoria.getModel().setSelectedItem(c);
+            
             
         } else {
             JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -500,7 +513,8 @@ public class FrmProduto extends javax.swing.JFrame {
                 c.getDescricao(),
                 c.getPreco(),
                 c.getQtd_estoque(),
-                c.getFornecedor().getNome()
+                c.getFornecedor().getNome(),
+                c.getCategoria().getDescricao()
             });
 
         }
@@ -527,21 +541,12 @@ public class FrmProduto extends javax.swing.JFrame {
         //Criar um objeto de Categoria
         Categoria c = new Categoria();
         c = (Categoria) cbcategoria.getSelectedItem();
-        obj.setFornecedor(f);
+        obj.setCategoria(c);
 
         DaoProduto dao = new DaoProduto();
         dao.cadastrar(obj);
         
         
-        Produto produto = new Produto();
-        produto.setDescricao(txtdescricao.getText());
-        produto.setPreco(Double.parseDouble(txtpreco.getText()));
-        
-        Categoria categoria = (Categoria)cbcategoria.getSelectedItem();
-        System.out.println(categoria);
-        produto.setCategoria(categoria);
-        
-        dao.inserir(produto);
         JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
         
         txtdescricao.setText("");
@@ -594,6 +599,12 @@ public class FrmProduto extends javax.swing.JFrame {
         f = (Fornecedor) cbfornecedor.getSelectedItem();
 
         obj.setFornecedor(f);
+        
+        //Criar um objeto de Categoria
+        Categoria c = new Categoria();
+        c = (Categoria) cbcategoria.getSelectedItem();
+
+        obj.setCategoria(c);
 
         DaoProduto dao = new DaoProduto();
         dao.alterar(obj);
@@ -674,7 +685,7 @@ public class FrmProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_cbcategoriaAncestorAdded
 
     private void cbcategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbcategoriaMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cbcategoriaMouseClicked
 
     private void cbcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcategoriaActionPerformed
